@@ -137,10 +137,10 @@ def generate_wiki_pages():
             print(f"Usando rama existente: {default_branch}")
             
             # Verificar checkout y pull
-            checkout_result = run_git_command(['git', 'checkout', default_branch], 
+            checkout_result = run_git_command(['git', 'checkout', 'main'], 
                                             "Error cambiando a rama por defecto")  # Siempre verificar
             
-            pull_result = run_git_command(['git', 'pull', 'origin', default_branch],
+            pull_result = run_git_command(['git', 'pull', 'origin', 'main'],
                                         "Error actualizando rama")  # Siempre verificar
             
             if not generate_wiki_content(wiki_dir, data_dir):
@@ -151,7 +151,7 @@ def generate_wiki_pages():
             status = run_git_command(['git', 'status', '--porcelain'])
             if status.stdout.strip():
                 run_git_command(['git', 'commit', '-m', 'Update wiki content'])
-                run_git_command(['git', 'push', 'origin', default_branch])
+                run_git_command(['git', 'push', 'origin', 'main'])
                 print("Wiki actualizada exitosamente")
         success = True  # Si llegamos aquí, todo salió bien
         
@@ -199,7 +199,7 @@ def generate_wiki_content(wiki_dir: Path, data_dir: Path):
         with open(wiki_dir / 'Home.md', 'w', encoding='utf-8') as f:
             f.write("""# UM Tesorería MercadoPago Service Wiki
 
-Bienvenido a la Wiki del servicio de integración con MercadoPago de UM Tesorería.
+Bienvenido a la Wiki del servicio de integración.
 
 ## Navegación Rápida
 
