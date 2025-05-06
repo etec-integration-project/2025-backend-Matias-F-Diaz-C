@@ -20,12 +20,6 @@ def run_command(cmd, check=True):
 
 def get_default_branch(wiki_url, headers):
     """Determinar la rama por defecto de la wiki"""
-    try:
-        result = run_command(['git', 'ls-remote', '--symref', wiki_url, 'HEAD'], check=False)
-        if 'ref: refs/heads/master' in result.stdout:
-            return 'master'
-    except:
-        pass
     return 'main'  # Default a main si no podemos determinar
 
 def run_git_command(cmd, error_msg=None, check=True):
