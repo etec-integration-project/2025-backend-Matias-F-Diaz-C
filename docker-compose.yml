@@ -1,0 +1,46 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysql_db
+    restart: always
+    environment:
+      MYSQL_DATABASE: audio_sql
+      MYSQL_ROOT_PASSWORD: "1234"
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p1234"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  backend:
+    build:
+      context: ./2024-backend-lucasrada-ETec
+    container_name: django_backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./2024-backend-lucasrada-ETec:/app
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - DEBUG=1
+      - DB_HOST=db
+      - DB_NAME=audio_sql
+      - DB_USER=root
+      - DB_PASS=1234
+    command: python manage.py runserver 0.0.0.0:8000
+
+  frontend:
+    build:
+      context: ./2024-frontend-lucasrada-ETec
+    container_name: react_frontend
+    ports:
+      - "3000:80"
+
+volumes:
+  db_data:
