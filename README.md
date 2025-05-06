@@ -1,6 +1,6 @@
 # 🎧 AudioStore
 
-**AudioStore** es una plataforma web para la compra informada de productos de audio y música como parlantes, auriculares, vinilos y más. El objetivo principal es ofrecer a los usuarios una experiencia de compra clara, eficiente y basada en datos, con métricas técnicas relevantes que los ayuden a tomar la mejor decisión.
+**AudioStore** es una plataforma web para la compra informada de productos de audio y música como parlantes, auriculares, vinilos y más. El objetivo principal es ofrecer a los usuarios una experiencia de compra clara, eficiente y basada en datos, con métricas técnicas relevantes que los ayuden a tomar la mejor decisión técnica.
 
 ---
 
